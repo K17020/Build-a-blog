@@ -23,7 +23,11 @@ class Blog(db.Model):
 # Displays the blog page
 @app.route('/', methods=['POST', 'GET'])
 def post():
-        return render_template('blog.html')
+    return render_template('blog.html')
+
+@app.route('/newpost', methods=['POST','GET'])
+def newpost():
+    return render_template('newpost.html')
 
 
 if __name__ == '__main__':
