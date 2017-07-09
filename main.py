@@ -21,14 +21,24 @@ class Blog(db.Model):
         self.body = body
 
 # Displays the blog page
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/blog', methods=['POST', 'GET'])
 def post():
-    return render_template('blog.html')
+    blog_posts = Blog.query.all()
+    return render_template('blog.html', blog_posts=blog_posts)
 
+
+
+# Adds blog post into a data base
 @app.route('/newpost', methods=['POST','GET'])
 def newpost():
-    return render_template('newpost.html')
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        new_post = Blog(title,body)
+        db.session.add(new_post)
+        db.session.commit()
 
+    return render_template('newpost.html')
 
 if __name__ == '__main__':
     app.run()
