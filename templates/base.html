@@ -2,12 +2,13 @@
 <html>
 
 <head>
-    <!-- <style type='text/css' rel='stylesheet' href='/static/style.css' /> -->
+    <link type='text/css' rel='stylesheet' href='static/style.css' />
     <title>Build A Blog</title>
     <nav>
         <a href="blog">Main Blog Page</a>
         <a href='newpost'>Add a Blog Entry</a>
     </nav>
+    <h1 class='page_title'>{% block title %}{{page_title}}{% endblock%}</h1>
 </head>
 
 <body>
