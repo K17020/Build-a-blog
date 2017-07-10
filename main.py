@@ -42,7 +42,6 @@ def newpost():
         else:
             flash("Title and body can not be empty.")
             return render_template("newpost.html", title=title, body=body)
-        return redirect('/')
     else:
         return render_template("newpost.html")
 if __name__ == '__main__':
