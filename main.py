@@ -41,7 +41,7 @@ def newpost():
         else:
             flash('Body and Title can not be empty', 'error') # flash message if title or body is empty
             return render_template("newpost.html", title=title, body=body)
-        return redirect('/blog')
+        return render_template('case_1.html', title=title, body=body)
     else:
         return render_template("newpost.html")
 if __name__ == '__main__':
