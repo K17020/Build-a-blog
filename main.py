@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -8,6 +8,7 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:root@localhost:8889/build-a-blog'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
+app.secret_key = 'rF1iDxY6qlTmvyJl'
 
 # Creates a database called blog
 class Blog(db.Model):
@@ -34,11 +35,15 @@ def newpost():
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
-        new_post = Blog(title,body)
-        db.session.add(new_post)
-        db.session.commit()
-
-    return render_template('newpost.html')
-
+        if title and body:
+            newpost = Post(title, body)
+            db.session.add(newpost)
+            db.session.commit()
+        else:
+            flash("Title and body can not be empty.")
+            return render_template("newpost.html", title=title, body=body)
+        return redirect('/')
+    else:
+        return render_template("newpost.html")
 if __name__ == '__main__':
     app.run()
