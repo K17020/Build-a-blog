@@ -36,7 +36,7 @@ def newpost():
         title = request.form['title']
         body = request.form['body']
         if title and body:
-            newpost = Post(title, body)
+            newpost = Blog(title, body)
             db.session.add(newpost)
             db.session.commit()
         else:
