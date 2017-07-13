@@ -26,7 +26,7 @@ class Blog(db.Model):
 def post():
     
         blog_posts = Blog.query.all() # Query the database and assign to a variable object
-        different_id = request.args.get('id') # 
+        different_id = request.args.get('id') # a get request based of the id tag in the blog.html
 
         if different_id: # If there is a get request do this
             blog_posts = Blog.query.filter_by(id=different_id).first() # Query database and filter the query based off the id from the get request
