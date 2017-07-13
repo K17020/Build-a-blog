@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% block title %} Build a Blog {% endblock %} {% block content %} {% for post in blog_posts %}
-<h1>{{post.title}}</h1>
+<h1><a href='/blog?id={{post.id}}'>{{post.title}}</a></h1>
 <hr/>
 <div class='blog_message'>{{post.body}}</div>
 {% endfor %} {% endblock %}
